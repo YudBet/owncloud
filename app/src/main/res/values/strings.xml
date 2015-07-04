@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">owncloud</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="todo_start_refresh">TODO: start refresh</string>
+    <string name="todo_start_upload">TODO: start upload</string>
+    <string name="todo_start_remote_deletion">TODO: start remote deletion</string>
+    <string name="todo_start_download">TODO: start download</string>
+    <string name="todo_start_local_deletion">TODO: start local deletion</string>
+    <string name="todo_operation_finished_in_success">TODO: operation finished in success</string>
+    <string name="todo_operation_finished_in_fail">TODO: operation finished in fail</string>
+</resources>
