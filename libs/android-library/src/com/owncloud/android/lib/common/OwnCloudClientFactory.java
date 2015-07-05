@@ -66,7 +66,7 @@ public class OwnCloudClientFactory {
      *                                      token for the account.
      * @throws OperationCanceledException   If the authenticator operation was cancelled while
      *                                      getting the authorization token for the account.
-     * @throws IOException                  If there was some I/O error while getting the
+     * @throws java.io.IOException                  If there was some I/O error while getting the
      *                                      authorization token for the account.
      * @throws AccountNotFoundException     If 'account' is unknown for the AccountManager
      */

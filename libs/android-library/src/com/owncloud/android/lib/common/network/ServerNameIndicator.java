@@ -57,7 +57,7 @@ public class ServerNameIndicator {
 	/**
 	 * Private constructor, class is a singleton.
 	 * 
-	 * @param sslSocketClass		Underlying implementation class of {@link SSLSocket} used to connect with the server. 
+	 * @param sslSocketClass		Underlying implementation class of {@link javax.net.ssl.SSLSocket} used to connect with the server.
 	 * @param setHostnameMethod		Name of the method to call to enable the SNI support.
 	 */
 	private ServerNameIndicator(Class<?> sslSocketClass, Method setHostnameMethod) {
@@ -68,7 +68,7 @@ public class ServerNameIndicator {
 	
 	/**
 	 * Calls the {@code #setHostname(String)} method of the underlying implementation 
-	 * of {@link SSLSocket} if exists.
+	 * of {@link javax.net.ssl.SSLSocket} if exists.
 	 * 
 	 * Creates and initializes the single instance of the class when needed
 	 *
@@ -130,7 +130,7 @@ public class ServerNameIndicator {
 	 * 
 	 * Uses reflection to extract and 'cache' the method to invoke to indicate the desited host name to the server side.
 	 *  
-	 * @param 	sslSocketClass		Underlying class providing the implementation of {@link SSLSocket}.
+	 * @param 	sslSocketClass		Underlying class providing the implementation of {@link javax.net.ssl.SSLSocket}.
 	 * @return						Method to call to indicate the server name of interest to the server.
 	 */
 	private static Method initFrom(Class<?> sslSocketClass) {

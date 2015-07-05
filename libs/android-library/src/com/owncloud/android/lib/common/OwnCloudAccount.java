@@ -78,7 +78,7 @@ public class OwnCloudAccount {
      * @param context
      * @throws AccountNotFoundException
      * @throws AuthenticatorException
-     * @throws IOException
+     * @throws java.io.IOException
      * @throws OperationCanceledException
      */
     public void loadCredentials(Context context)

@@ -49,7 +49,7 @@ import com.owncloud.android.lib.common.network.AdvancedSslSocketFactory;
 
 
 /**
- * SelfSignedConfidentSslSocketFactory allows to create SSL {@link Socket}s 
+ * SelfSignedConfidentSslSocketFactory allows to create SSL {@link java.net.Socket}s
  * that accepts self-signed server certificates.
  * 
  * WARNING: this SHOULD NOT be used in productive environments.
@@ -66,7 +66,7 @@ public class SelfSignedConfidentSslSocketFactory implements SecureProtocolSocket
 	
 	/**
 	 * Constructor for SelfSignedConfidentSslSocketFactory.
-	 * @throws GeneralSecurityException 
+	 * @throws java.security.GeneralSecurityException
 	 */
 	public SelfSignedConfidentSslSocketFactory() throws GeneralSecurityException {
 		SSLContext sslContext = SSLContext.getInstance("TLS");
@@ -88,7 +88,7 @@ public class SelfSignedConfidentSslSocketFactory implements SecureProtocolSocket
 	}
 	
 	/**
-	 * @see SecureProtocolSocketFactory#createSocket(String,int,InetAddress,int)
+	 * @see SecureProtocolSocketFactory#createSocket(String,int,java.net.InetAddress,int)
 	 */
 	@Override
 	public Socket createSocket(String host, int port, InetAddress clientHost, int clientPort)
@@ -107,8 +107,8 @@ public class SelfSignedConfidentSslSocketFactory implements SecureProtocolSocket
 	 * 
 	 * @return Socket 		A new socket
 	 * 
-	 * @throws IOException if an I/O error occurs while creating the socket
-	 * @throws UnknownHostException if the IP address of the host cannot be determined
+	 * @throws java.io.IOException if an I/O error occurs while creating the socket
+	 * @throws java.net.UnknownHostException if the IP address of the host cannot be determined
 	 */
 	@Override
 	public Socket createSocket(String host, int port, InetAddress localAddress, int localPort,
@@ -119,7 +119,7 @@ public class SelfSignedConfidentSslSocketFactory implements SecureProtocolSocket
 	}
 
 	/**
-	  * @see SecureProtocolSocketFactory#createSocket(Socket,String,int,boolean)
+	  * @see SecureProtocolSocketFactory#createSocket(java.net.Socket,String,int,boolean)
 	  */
 	@Override
 	public Socket createSocket(Socket socket, String host, int port, boolean autoClose)
@@ -142,7 +142,7 @@ public class SelfSignedConfidentSslSocketFactory implements SecureProtocolSocket
 		}
 
 		/**
-		 * @see X509TrustManager#checkClientTrusted(X509Certificate[],String authType)
+		 * @see javax.net.ssl.X509TrustManager#checkClientTrusted(java.security.cert.X509Certificate[],String authType)
 		 */
 		@Override
 		public void checkClientTrusted(X509Certificate[] chain, String authType)
@@ -151,7 +151,7 @@ public class SelfSignedConfidentSslSocketFactory implements SecureProtocolSocket
 		}
 
 		/**
-		 * @see X509TrustManager#checkServerTrusted(X509Certificate[],
+		 * @see javax.net.ssl.X509TrustManager#checkServerTrusted(java.security.cert.X509Certificate[],
 		 *      String authType)
 		 */
 		@Override
@@ -165,7 +165,7 @@ public class SelfSignedConfidentSslSocketFactory implements SecureProtocolSocket
 		}
 
 		/**
-		 * @see X509TrustManager#getAcceptedIssuers()
+		 * @see javax.net.ssl.X509TrustManager#getAcceptedIssuers()
 		 */
 		public X509Certificate[] getAcceptedIssuers() {
 			return mStandardTrustManager.getAcceptedIssuers();
@@ -175,7 +175,7 @@ public class SelfSignedConfidentSslSocketFactory implements SecureProtocolSocket
 		 * Locates the first X509TrustManager provided by a given TrustManagerFactory
 		 * @param factory               TrustManagerFactory to inspect in the search for a X509TrustManager
 		 * @return                      The first X509TrustManager found in factory.
-		 * @throws CertStoreException   When no X509TrustManager instance was found in factory
+		 * @throws java.security.cert.CertStoreException   When no X509TrustManager instance was found in factory
 		 */
 		private X509TrustManager findX509TrustManager(TrustManagerFactory factory) 
 				throws CertStoreException {

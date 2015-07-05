@@ -38,7 +38,7 @@ import javax.net.ssl.SSLPeerUnverifiedException;
  * 
  * This was initially created as an extension of CertificateException, but some
  * implementations of the SSL socket layer in existing devices are REPLACING the CertificateException
- * instances thrown by {@link javax.net.ssl.X509TrustManager#checkServerTrusted(X509Certificate[], String)}
+ * instances thrown by {@link javax.net.ssl.X509TrustManager#checkServerTrusted(java.security.cert.X509Certificate[], String)}
  * with SSLPeerUnverifiedException FORGETTING THE CAUSING EXCEPTION instead of wrapping it. 
  * 
  * Due to this, extending RuntimeException is necessary to get that the CertificateCombinedException 

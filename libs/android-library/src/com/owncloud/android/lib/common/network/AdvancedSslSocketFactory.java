@@ -52,7 +52,7 @@ import com.owncloud.android.lib.common.utils.Log_OC;
 
 
 /**
- * AdvancedSSLProtocolSocketFactory allows to create SSL {@link Socket}s with 
+ * AdvancedSSLProtocolSocketFactory allows to create SSL {@link java.net.Socket}s with
  * a custom SSLContext and an optional Hostname Verifier.
  * 
  * @author David A. Velasco
@@ -90,7 +90,7 @@ public class AdvancedSslSocketFactory implements SecureProtocolSocketFactory {
     }
 
     /**
-     * @see ProtocolSocketFactory#createSocket(String,int,InetAddress,int)
+     * @see ProtocolSocketFactory#createSocket(String,int,java.net.InetAddress,int)
      */
     @Override
     public Socket createSocket(String host, int port, InetAddress clientHost, int clientPort) 
@@ -154,8 +154,8 @@ public class AdvancedSslSocketFactory implements SecureProtocolSocketFactory {
      * 
      * @return Socket a new socket
      * 
-     * @throws IOException if an I/O error occurs while creating the socket
-     * @throws UnknownHostException if the IP address of the host cannot be
+     * @throws java.io.IOException if an I/O error occurs while creating the socket
+     * @throws java.net.UnknownHostException if the IP address of the host cannot be
      *             determined
      */
     @Override

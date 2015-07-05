@@ -56,7 +56,7 @@ public class AdvancedX509TrustManager implements X509TrustManager {
      * Constructor for AdvancedX509TrustManager
      * 
      * @param  knownServersKeyStore    Local certificates store with server certificates explicitly trusted by the user.
-     * @throws CertStoreException       When no default X509TrustManager instance was found in the system.
+     * @throws java.security.cert.CertStoreException       When no default X509TrustManager instance was found in the system.
      */
     public AdvancedX509TrustManager(KeyStore knownServersKeyStore)
             throws NoSuchAlgorithmException, KeyStoreException, CertStoreException {
@@ -74,7 +74,7 @@ public class AdvancedX509TrustManager implements X509TrustManager {
      * Locates the first X509TrustManager provided by a given TrustManagerFactory
      * @param factory               TrustManagerFactory to inspect in the search for a X509TrustManager
      * @return                      The first X509TrustManager found in factory.
-     * @throws CertStoreException   When no X509TrustManager instance was found in factory
+     * @throws java.security.cert.CertStoreException   When no X509TrustManager instance was found in factory
      */
     private X509TrustManager findX509TrustManager(TrustManagerFactory factory) throws CertStoreException {
         TrustManager tms[] = factory.getTrustManagers();
@@ -88,7 +88,7 @@ public class AdvancedX509TrustManager implements X509TrustManager {
     
 
     /**
-     * @see X509TrustManager#checkClientTrusted(X509Certificate[],
+     * @see javax.net.ssl.X509TrustManager#checkClientTrusted(java.security.cert.X509Certificate[],
      *      String authType)
      */
     public void checkClientTrusted(X509Certificate[] certificates, String authType) throws CertificateException {
@@ -97,7 +97,7 @@ public class AdvancedX509TrustManager implements X509TrustManager {
 
     
     /**
-     * @see X509TrustManager#checkServerTrusted(X509Certificate[],
+     * @see javax.net.ssl.X509TrustManager#checkServerTrusted(java.security.cert.X509Certificate[],
      *      String authType)
      */
     public void checkServerTrusted(X509Certificate[] certificates, String authType) throws CertificateException {
@@ -136,7 +136,7 @@ public class AdvancedX509TrustManager implements X509TrustManager {
     
     
     /**
-     * @see X509TrustManager#getAcceptedIssuers()
+     * @see javax.net.ssl.X509TrustManager#getAcceptedIssuers()
      */
     public X509Certificate[] getAcceptedIssuers() {
         return mStandardTrustManager.getAcceptedIssuers();

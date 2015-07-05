@@ -76,7 +76,7 @@ public class NetworkUtils {
     
     /**
      * Registers or unregisters the proper components for advanced SSL handling.
-     * @throws IOException 
+     * @throws java.io.IOException
      */
     @SuppressWarnings("deprecation")
 	public static void registerAdvancedSslContext(boolean register, Context context) 
@@ -141,10 +141,10 @@ public class NetworkUtils {
      * 
      * @param context                       Android context where the operation is being performed.
      * @return                              KeyStore instance with explicitly-accepted server certificates. 
-     * @throws KeyStoreException            When the KeyStore instance could not be created.
-     * @throws IOException                  When an existing local trust store could not be loaded.
-     * @throws NoSuchAlgorithmException     When the existing local trust store was saved with an unsupported algorithm.
-     * @throws CertificateException         When an exception occurred while loading the certificates from the local 
+     * @throws java.security.KeyStoreException            When the KeyStore instance could not be created.
+     * @throws java.io.IOException                  When an existing local trust store could not be loaded.
+     * @throws java.security.NoSuchAlgorithmException     When the existing local trust store was saved with an unsupported algorithm.
+     * @throws java.security.cert.CertificateException         When an exception occurred while loading the certificates from the local
      * 										trust store.
      */
     private static KeyStore getKnownServersStore(Context context) 

@@ -124,7 +124,7 @@ public class ShareXMLParser {
 	 * @param is
 	 * @return List of ShareRemoteFiles
 	 * @throws XmlPullParserException
-	 * @throws IOException
+	 * @throws java.io.IOException
 	 */
 	public ArrayList<OCShare> parseXMLResponse(InputStream is) throws XmlPullParserException, IOException {
 
@@ -149,7 +149,7 @@ public class ShareXMLParser {
 	 * @param parser
 	 * @return List of ShareRemoteFiles
 	 * @throws XmlPullParserException
-	 * @throws IOException
+	 * @throws java.io.IOException
 	 */
 	private ArrayList<OCShare> readOCS (XmlPullParser parser) throws XmlPullParserException, IOException {
 		ArrayList<OCShare> shares = new ArrayList<OCShare>();
@@ -178,7 +178,7 @@ public class ShareXMLParser {
 	 * Parse Meta node
 	 * @param parser
 	 * @throws XmlPullParserException
-	 * @throws IOException
+	 * @throws java.io.IOException
 	 */
 	private void readMeta(XmlPullParser parser) throws XmlPullParserException, IOException {
 		parser.require(XmlPullParser.START_TAG, ns, NODE_META);
@@ -207,7 +207,7 @@ public class ShareXMLParser {
 	 * @param parser
 	 * @return
 	 * @throws XmlPullParserException
-	 * @throws IOException
+	 * @throws java.io.IOException
 	 */
 	private ArrayList<OCShare> readData(XmlPullParser parser) throws XmlPullParserException, IOException {
 		ArrayList<OCShare> shares = new ArrayList<OCShare>();
@@ -257,7 +257,7 @@ public class ShareXMLParser {
 	 * @param parser
 	 * @return
 	 * @throws XmlPullParserException
-	 * @throws IOException
+	 * @throws java.io.IOException
 	 */
 	private void readElement(XmlPullParser parser, ArrayList<OCShare> shares) throws XmlPullParserException, IOException {
 		parser.require(XmlPullParser.START_TAG, ns, NODE_ELEMENT);
@@ -355,7 +355,7 @@ public class ShareXMLParser {
 	 * @param node
 	 * @return Text of the node
 	 * @throws XmlPullParserException
-	 * @throws IOException
+	 * @throws java.io.IOException
 	 */
 	private String readNode (XmlPullParser parser, String node) throws XmlPullParserException, IOException{
 		parser.require(XmlPullParser.START_TAG, ns, node);
@@ -369,7 +369,7 @@ public class ShareXMLParser {
 	 * Read the text from a node
 	 * @param parser
 	 * @return Text of the node
-	 * @throws IOException
+	 * @throws java.io.IOException
 	 * @throws XmlPullParserException
 	 */
 	private String readText(XmlPullParser parser) throws IOException, XmlPullParserException {
@@ -385,7 +385,7 @@ public class ShareXMLParser {
 	 * Skip tags in parser procedure
 	 * @param parser
 	 * @throws XmlPullParserException
-	 * @throws IOException
+	 * @throws java.io.IOException
 	 */
 	private void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
 		if (parser.getEventType() != XmlPullParser.START_TAG) {

@@ -166,9 +166,9 @@ public class MoveRemoteFileOperation extends RemoteOperation {
 	 *  entity. But SHOULD NOT != MUST NOT, so take carefully. 
 	 * 
 	 *  @param 	move	Move operation just finished with a multistatus response
-	 *  @return	A result for the {@link MoveRemoteFileOperation} caller
+	 *  @return	A result for the {@link com.owncloud.android.lib.resources.files.MoveRemoteFileOperation} caller
 	 *  
-	 *  @throws IOException 	If the response body could not be parsed
+	 *  @throws java.io.IOException 	If the response body could not be parsed
 	 *  @throws DavException 	If the status code is other than MultiStatus or if obtaining
 	 *  						the response XML document fails
 	 */

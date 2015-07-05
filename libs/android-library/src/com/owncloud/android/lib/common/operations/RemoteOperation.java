@@ -257,7 +257,7 @@ public abstract class RemoteOperation implements Runnable {
 	
 	/**
 	 * Asynchronous execution of the operation 
-	 * started by {@link RemoteOperation#execute(OwnCloudClient,
+	 * started by {@link com.owncloud.android.lib.common.operations.RemoteOperation#execute(OwnCloudClient,
      *              OnRemoteOperationListener, Handler)},
 	 * and result posting.
 	 * 

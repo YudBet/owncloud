@@ -143,7 +143,7 @@ public class RemoteFile implements Parcelable, Serializable {
 	}
 
 	/**
-     * Create new {@link RemoteFile} with given path.
+     * Create new {@link com.owncloud.android.lib.resources.files.RemoteFile} with given path.
      * 
      * The path received must be URL-decoded. Path separator must be OCFile.PATH_SEPARATOR, and it must be the first character in 'path'.
      * 

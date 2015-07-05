@@ -92,7 +92,7 @@ public class AccountUtils {
      * @param context
      * @param account
      * @return url or null on failure
-     * @throws AccountNotFoundException     When 'account' is unknown for the AccountManager
+     * @throws com.owncloud.android.lib.common.accounts.AccountUtils.AccountNotFoundException     When 'account' is unknown for the AccountManager
      */
     @Deprecated
     public static String constructFullURLForAccount(Context context, Account account) throws AccountNotFoundException {
@@ -120,7 +120,7 @@ public class AccountUtils {
      * @param context
      * @param account
      * @return url server or null on failure
-     * @throws AccountNotFoundException     When 'account' is unknown for the AccountManager
+     * @throws com.owncloud.android.lib.common.accounts.AccountUtils.AccountNotFoundException     When 'account' is unknown for the AccountManager
      */
     @Deprecated
     public static String constructBasicURLForAccount(Context context, Account account) 
@@ -133,7 +133,7 @@ public class AccountUtils {
      * @param context
      * @param account
      * @return url server or null on failure
-     * @throws AccountNotFoundException     When 'account' is unknown for the AccountManager
+     * @throws com.owncloud.android.lib.common.accounts.AccountUtils.AccountNotFoundException     When 'account' is unknown for the AccountManager
      */
     public static String getBaseUrlForAccount(Context context, Account account) 
     		throws AccountNotFoundException {
@@ -150,7 +150,7 @@ public class AccountUtils {
     /**
      * 
      * @return
-     * @throws IOException 
+     * @throws java.io.IOException
      * @throws AuthenticatorException 
      * @throws OperationCanceledException 
      */
