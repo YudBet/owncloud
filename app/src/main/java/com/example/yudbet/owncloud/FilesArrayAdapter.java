@@ -31,6 +31,9 @@ import android.widget.TextView;
 
 import com.owncloud.android.lib.resources.files.RemoteFile;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class FilesArrayAdapter extends ArrayAdapter<RemoteFile> {
 	
 	public FilesArrayAdapter(Context context, int resource) {
@@ -39,7 +42,12 @@ public class FilesArrayAdapter extends ArrayAdapter<RemoteFile> {
 	
 	public View getView(int position, View convertView, ViewGroup parent) {
 		TextView textView = (TextView)super.getView(position, convertView, parent);
-	    textView.setText(getItem(position).getRemotePath());
+		RemoteFile file = getItem(position);
+
+		Date date = new Date(file.getModifiedTimestamp());
+		SimpleDateFormat sdFormat = new SimpleDateFormat("MMM d, EEE HH:mm:ss");
+
+	    textView.setText(file.getRemotePath() + "\n" + sdFormat.format(date) + "\n" + file.getMimeType());
 	    return textView;
 	}		
 }

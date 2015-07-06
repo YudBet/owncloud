@@ -101,11 +101,11 @@ public class OwnManagerActivity extends ActionBarActivity implements OnRemoteOpe
         if (!result.isSuccess()) {
             Toast.makeText(this, R.string.todo_operation_finished_in_fail, Toast.LENGTH_SHORT).show();
             Log.e(LOG_TAG, result.getLogMessage(), result.getException());
-
-        } else if (operation instanceof ReadRemoteFolderOperation) {
+        }
+        else if (operation instanceof ReadRemoteFolderOperation) {
             onSuccessfulRefresh((ReadRemoteFolderOperation)operation, result);
-
-        }  else {
+        }
+        else {
             Toast.makeText(this, R.string.todo_operation_finished_in_success, Toast.LENGTH_SHORT).show();
         }
     }
@@ -114,7 +114,7 @@ public class OwnManagerActivity extends ActionBarActivity implements OnRemoteOpe
         filesAdapter.clear();
         List<RemoteFile> files = new ArrayList<RemoteFile>();
 
-        for (Object obj : result.getData()) files.add((RemoteFile) obj);
+        for (Object obj : result.getData()) files.add((RemoteFile)obj);
         if (files != null) {
 
             Iterator<RemoteFile> it = files.iterator();
