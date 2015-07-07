@@ -19,7 +19,8 @@
         android:layout_height="wrap_content"
         android:hint="owncloud URL"
         android:inputType="textEmailAddress"
-        android:layout_below="@id/owncloud_logo" />
+        android:layout_below="@id/owncloud_logo"
+        android:text="http://www.tanorn.info/owncloud" />
 
     <EditText
         android:id="@+id/username"

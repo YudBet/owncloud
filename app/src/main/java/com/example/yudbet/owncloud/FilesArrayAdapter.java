@@ -45,7 +45,7 @@ public class FilesArrayAdapter extends ArrayAdapter<RemoteFile> {
 		RemoteFile file = getItem(position);
 
 		Date date = new Date(file.getModifiedTimestamp());
-		SimpleDateFormat sdFormat = new SimpleDateFormat("MMM d, EEE HH:mm:ss");
+		SimpleDateFormat sdFormat = new SimpleDateFormat("MM/dd, HH:mm");
 
 	    textView.setText(file.getRemotePath() + "\n" + sdFormat.format(date) + "\n" + file.getMimeType());
 	    return textView;
