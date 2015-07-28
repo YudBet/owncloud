@@ -3,6 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="download_folder_path">download</string>
     <string name="todo_start_refresh">TODO: start refresh</string>
     <string name="todo_start_upload">TODO: start upload</string>
     <string name="todo_start_remote_deletion">TODO: start remote deletion</string>

@@ -2,22 +2,36 @@ package com.example.yudbet.owncloud;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Handler;
 
 import com.owncloud.android.lib.common.OwnCloudClient;
 import com.owncloud.android.lib.common.OwnCloudClientFactory;
 import com.owncloud.android.lib.common.OwnCloudCredentialsFactory;
+import com.owncloud.android.lib.common.network.OnDatatransferProgressListener;
+import com.owncloud.android.lib.common.operations.OnRemoteOperationListener;
+import com.owncloud.android.lib.common.operations.RemoteOperation;
+import com.owncloud.android.lib.common.operations.RemoteOperationResult;
+import com.owncloud.android.lib.resources.files.DownloadRemoteFileOperation;
+import com.owncloud.android.lib.resources.files.FileUtils;
+import com.owncloud.android.lib.resources.files.ReadRemoteFolderOperation;
+import com.owncloud.android.lib.resources.files.UploadRemoteFileOperation;
+
+import java.io.File;
+
 
 /**
  * Created by Mist on 2015/7/25.
  */
-public class OwnCloudLibraryAdapter {
+public class OwnCloudLibraryAdapter implements OnRemoteOperationListener, OnDatatransferProgressListener {
 
     private OwnCloudClient client;
+
     private Context context;
+    private Handler handler;
 
-
-    public OwnCloudLibraryAdapter(Context context) {
+    public OwnCloudLibraryAdapter(Context context, Handler handler) {
         this.context = context;
+        this.handler = handler;
     }
 
 
@@ -29,38 +43,62 @@ public class OwnCloudLibraryAdapter {
         );
     }
 
-    /** create shared dir(group)
-     *      create a group
-     *      Require:
-     *          group name
-     **/
-    /** delete shared dir(group)
-     *      delete a group
-     *      Require:
-     *          group name
-     **/
+    public void refresh() {
+        ReadRemoteFolderOperation refreshOperation = new ReadRemoteFolderOperation(FileUtils.PATH_SEPARATOR);
+        refreshOperation.execute(client, this, handler);
+    }
 
-    /** upload file
-     *      upload file to owncloud server
-     *      Require:
-     *          file name
-     **/
-    /** download file
-     *      download file to local phone
-     *      Require:
-     *          file name
-     **/
+    public void createGroup(String groupname) {
+        // Create shared dir
+    }
 
-    /** read file
-     *      read file info
-     *      Require:
-     *          file name
-     **/
+    public void deleteGroup(String groupname) {
+        // Delete shared dir
+    }
 
-    /** read dir
-     *      read dir info
-     *      Require:
-     *          dir name
-     **/
+    public void uploadFile(String filename) {
+        File upFolder = new File(context.getCacheDir(), filename);
+        File fileToUpload = upFolder.listFiles()[0];
+        String remotePath = FileUtils.PATH_SEPARATOR + fileToUpload.getName();
+        String mimeType = getString(R.string.sample_file_mimetype);
+        UploadRemoteFileOperation uploadOperation = new UploadRemoteFileOperation(fileToUpload.getAbsolutePath(), remotePath, mimeType);
+        uploadOperation.addDatatransferProgressListener(this);
+        uploadOperation.execute(client, this, handler);
+    }
+
+    public void downloadFile(String filename) {
+        File downFolder = new File(context.getCacheDir(), context.getString(R.string.download_folder_path));
+        downFolder.mkdir();
+        File upFolder = new File(context.getCacheDir(), filename);
+        File fileToUpload = upFolder.listFiles()[0];
+        String remotePath = FileUtils.PATH_SEPARATOR + fileToUpload.getName();
+        DownloadRemoteFileOperation downloadOperation = new DownloadRemoteFileOperation(remotePath, downFolder.getAbsolutePath());
+        downloadOperation.addDatatransferProgressListener(this);
+        downloadOperation.execute(client, this, handler);
+    }
+
+    public void readFile(String filename) {
+        // read file info.
+        // contains uploader, checkpoint list, upload list, Thread
+    }
+
+    public void readDir(String dirname) {
+        // read dir contains dir or file
+        // return list of string with format:filename|lastupdatetime
+    }
+
+
+    @Override
+    public void onTransferProgress(long progressRate, long totalTransferredSoFar, long totalToTransfer, String fileAbsoluteName) {
+
+    }
+
+    @Override
+    public void onRemoteOperationFinish(RemoteOperation caller, RemoteOperationResult result) {
+
+    }
+
+
+
 
 }
