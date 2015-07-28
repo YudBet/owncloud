@@ -79,12 +79,10 @@ public class OwnCloudLibraryAdapter implements OnRemoteOperationListener, OnData
 
     public void readFile(String filename) {
         // read file info.
-        // contains uploader, checkpoint list, upload list, Thread
-    }
-
-    public void readDir(String dirname) {
-        // read dir contains dir or file
-        // return list of string with format:filename|lastupdatetime
+        // contains uploader(owncloud), upload list(owncloud), checkpoint list(DB), Thread(DB)
+        // create class store list of these items, class name: FileInfo
+        // return list of FileInfo
+        // can use RemoteFile class in android-library, maybe
     }
 
 
