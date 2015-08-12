@@ -14,6 +14,7 @@ import com.owncloud.android.lib.common.network.OnDatatransferProgressListener;
 import com.owncloud.android.lib.common.operations.OnRemoteOperationListener;
 import com.owncloud.android.lib.common.operations.RemoteOperation;
 import com.owncloud.android.lib.common.operations.RemoteOperationResult;
+import com.owncloud.android.lib.resources.files.CreateRemoteFolderOperation;
 import com.owncloud.android.lib.resources.files.DownloadRemoteFileOperation;
 import com.owncloud.android.lib.resources.files.FileUtils;
 import com.owncloud.android.lib.resources.files.ReadRemoteFolderOperation;
@@ -32,6 +33,8 @@ public class OwnCloudLibraryAdapter implements OnRemoteOperationListener, OnData
     public static final int REFRESH_FILES = 1;
     private int refreshType;
 
+    private String curpath;
+
     private GroupsArrayAdapter groupsAdapter;
     private FilesArrayAdapter filesAdapter;
 
@@ -43,6 +46,7 @@ public class OwnCloudLibraryAdapter implements OnRemoteOperationListener, OnData
     public OwnCloudLibraryAdapter(Context context, Handler handler) {
         this.context = context;
         this.handler = handler;
+        this.curpath = FileUtils.PATH_SEPARATOR;
         this.groupsAdapter = new GroupsArrayAdapter(context, R.layout.list_groups);
         this.filesAdapter = new FilesArrayAdapter(context, R.layout.list_files);
     }
@@ -59,12 +63,14 @@ public class OwnCloudLibraryAdapter implements OnRemoteOperationListener, OnData
     public void refresh(int refreshType) {
         this.refreshType = refreshType;
 
-        ReadRemoteFolderOperation refreshOperation = new ReadRemoteFolderOperation(FileUtils.PATH_SEPARATOR);
+        ReadRemoteFolderOperation refreshOperation = new ReadRemoteFolderOperation(curpath);
         refreshOperation.execute(client, this, handler);
     }
 
     public void createGroup(String groupname) {
         // Create shared dir
+        CreateRemoteFolderOperation createOperation = new CreateRemoteFolderOperation("./" + groupname, false);
+        createOperation.execute(client, this, handler);
     }
 
     public void deleteGroup(String groupname) {
@@ -149,4 +155,8 @@ public class OwnCloudLibraryAdapter implements OnRemoteOperationListener, OnData
         adapter.notifyDataSetChanged();
     }
 
+
+    public void setCurPath(String curpath) {
+        this.curpath = curpath;
+    }
 }

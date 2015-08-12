@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="150px"
+    android:background="#EEEEEE">
+
+    <ImageView
+        android:id="@+id/fileimg"
+        android:layout_width="150px"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/filename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="20dp"
+        android:textSize="40px"
+        android:textColor="#000000"
+        />
 
 </LinearLayout>

@@ -21,11 +21,35 @@
                 android:src="@drawable/winter_holidays_icon"/>
         </android.support.v7.widget.Toolbar>
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="200px"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#EEEEEE">
+
+            <ImageView
+                android:layout_width="200px"
+                android:layout_height="wrap_content"
+                android:src="@drawable/shared_with_me_folder" />
+            <TextView
+                android:id="@+id/curpath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:textSize="50px"
+                android:textColor="#000000" />
+
+        </LinearLayout>
+
         <ListView
-            android:id="@+id/lvGroup"
+            android:id="@+id/lvFile"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:dividerHeight="5dp"
+            android:dividerHeight="2dp"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp">
@@ -33,7 +57,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/drawer_profilechecker"
+        android:id="@+id/drawer_groupchecker"
         android:layout_width="260dp"
         android:layout_height="fill_parent"
         android:layout_gravity="start"
