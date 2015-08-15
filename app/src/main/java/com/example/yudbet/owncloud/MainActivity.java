@@ -74,8 +74,8 @@ public class MainActivity extends ActionBarActivity {
         statusType = STATUS_MAIN;
 
         initToolbar();
-        initGroupListView();
         initProfileCheckerDrawer();
+        initGroupListView();
     }
 
     public void initToolbar() {

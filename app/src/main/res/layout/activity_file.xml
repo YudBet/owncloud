@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawerlayout"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:background="#CCCCCC">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:background="#003366">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/winter_holidays_icon"/>
+        </android.support.v7.widget.Toolbar>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="400px"
+            android:background="#EEEEEE">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="300px"
+                android:layout_height="400px">
+
+                <ImageView
+                    android:id="@+id/fileimg"
+                    android:layout_width="200px"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal" />
+                <TextView
+                    android:id="@+id/filename"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="50px"
+                    android:textColor="#000000" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="300px"
+                android:layout_height="400px">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="30px"
+                    android:textColor="#000000"
+                    android:text="Uploader" />
+
+                <TextView
+                    android:id="@+id/uploader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="20dp"
+                    android:textSize="50px"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/latest_updatetime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20px"
+                    android:textColor="#000000" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lvFile"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:dividerHeight="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/drawer_groupchecker"
+        android:layout_width="260dp"
+        android:layout_height="fill_parent"
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:background="#EEEEEE">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo" />
+
+    </LinearLayout>
+</android.support.v4.widget.DrawerLayout>

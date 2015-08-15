@@ -61,7 +61,11 @@ public class GroupsArrayAdapter extends ArrayAdapter<RemoteFile> {
         ImageView ivImage = (ImageView)convertView.findViewById(R.id.groupimg);
 		TextView tvName = (TextView)convertView.findViewById(R.id.groupname);
 
-        ivImage.setImageResource(R.drawable.shared_with_me_folder);
+        if (groupname.equals("own"))
+            ivImage.setImageResource(R.drawable.folder);
+        else
+            ivImage.setImageResource(R.drawable.shared_with_me_folder);
+
         tvName.setText(groupname);
 
 	    return convertView;

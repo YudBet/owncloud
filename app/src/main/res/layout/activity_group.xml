@@ -31,6 +31,7 @@
             android:background="#EEEEEE">
 
             <ImageView
+                android:id="@+id/groupimg"
                 android:layout_width="200px"
                 android:layout_height="wrap_content"
                 android:src="@drawable/shared_with_me_folder" />
@@ -52,7 +53,8 @@
             android:dividerHeight="2dp"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp">
+            android:layout_marginRight="5dp"
+            android:layout_gravity="end">
         </ListView>
     </LinearLayout>
 

@@ -17,6 +17,7 @@ import com.owncloud.android.lib.common.operations.RemoteOperationResult;
 import com.owncloud.android.lib.resources.files.CreateRemoteFolderOperation;
 import com.owncloud.android.lib.resources.files.DownloadRemoteFileOperation;
 import com.owncloud.android.lib.resources.files.FileUtils;
+import com.owncloud.android.lib.resources.files.ReadRemoteFileOperation;
 import com.owncloud.android.lib.resources.files.ReadRemoteFolderOperation;
 import com.owncloud.android.lib.resources.files.RemoteFile;
 import com.owncloud.android.lib.resources.files.UploadRemoteFileOperation;
@@ -39,6 +40,7 @@ public class OwnCloudLibraryAdapter implements OnRemoteOperationListener, OnData
     private FilesArrayAdapter filesAdapter;
 
     private OwnCloudClient client;
+    private RemoteFile file;
 
     private Context context;
     private Handler handler;
@@ -67,28 +69,21 @@ public class OwnCloudLibraryAdapter implements OnRemoteOperationListener, OnData
         refreshOperation.execute(client, this, handler);
     }
 
-    public void createGroup(String groupname) {
-        // Create shared dir
-        CreateRemoteFolderOperation createOperation = new CreateRemoteFolderOperation("./" + groupname, false);
-        createOperation.execute(client, this, handler);
-    }
-
-    public void deleteGroup(String groupname) {
-        // Delete shared dir
-    }
-/*
     public void uploadFile(String filename) {
-        File upFolder = new File(context.getCacheDir(), filename);
+        /*
+        File upFolder = new File(context.getCacheDir(), curpath);
         File fileToUpload = upFolder.listFiles()[0];
         String remotePath = FileUtils.PATH_SEPARATOR + fileToUpload.getName();
-        String mimeType = getString(R.string.sample_file_mimetype); // self
+        String mimeType = getString(R.string.sample_file_mimetype);
         UploadRemoteFileOperation uploadOperation = new UploadRemoteFileOperation(fileToUpload.getAbsolutePath(), remotePath, mimeType);
         uploadOperation.addDatatransferProgressListener(this);
         uploadOperation.execute(client, this, handler);
+        */
     }
-*/
+
     public void downloadFile(String filename) {
-        File downFolder = new File(context.getCacheDir(), context.getString(R.string.download_folder_path));
+        /*
+        File downFolder = new File(context.getCacheDir(), curpath);
         downFolder.mkdir();
         File upFolder = new File(context.getCacheDir(), filename);
         File fileToUpload = upFolder.listFiles()[0];
@@ -96,23 +91,24 @@ public class OwnCloudLibraryAdapter implements OnRemoteOperationListener, OnData
         DownloadRemoteFileOperation downloadOperation = new DownloadRemoteFileOperation(remotePath, downFolder.getAbsolutePath());
         downloadOperation.addDatatransferProgressListener(this);
         downloadOperation.execute(client, this, handler);
+        */
     }
 
     public void readFile(String filename) {
-        // read file info.
-        // contains uploader(owncloud), upload list(owncloud), checkpoint list(DB), Thread(DB)
-        // create class store list of these items, class name: FileInfo
-        // return list of FileInfo
-        // can use RemoteFile class in android-library, maybe
+
     }
 
-    public GroupsArrayAdapter getGroupsAdapter() {
-        return groupsAdapter;
+
+    public void createGroup(String groupname) {
+        // Create shared dir
+        CreateRemoteFolderOperation createOperation = new CreateRemoteFolderOperation(FileUtils.PATH_SEPARATOR + groupname, false);
+        createOperation.execute(client, this, handler);
     }
 
-    public FilesArrayAdapter getFilesAdapter() {
-        return filesAdapter;
+    public void deleteGroup(String groupname) {
+        // Delete shared dir
     }
+
 
     @Override
     public void onTransferProgress(long progressRate, long totalTransferredSoFar, long totalToTransfer, String fileAbsoluteName) {
@@ -128,6 +124,12 @@ public class OwnCloudLibraryAdapter implements OnRemoteOperationListener, OnData
         }
         else if (operation instanceof ReadRemoteFolderOperation) {
             onSuccessfulRefresh((ReadRemoteFolderOperation)operation, result);
+        }
+        else if (operation instanceof  UploadRemoteFileOperation) {
+            onSuccessfulUpload((UploadRemoteFileOperation)operation, result);
+        }
+        else if (operation instanceof  DownloadRemoteFileOperation) {
+            onSuccessfulDownload((DownloadRemoteFileOperation)operation, result);
         }
         else {
             Toast.makeText(context, R.string.todo_operation_finished_in_success, Toast.LENGTH_SHORT).show();
@@ -155,8 +157,47 @@ public class OwnCloudLibraryAdapter implements OnRemoteOperationListener, OnData
         adapter.notifyDataSetChanged();
     }
 
+    private void onSuccessfulUpload(UploadRemoteFileOperation operation, RemoteOperationResult result) {
+        refresh(refreshType);
+    }
+
+    private void onSuccessfulDownload(DownloadRemoteFileOperation operation, RemoteOperationResult result) {
+
+    }
+
+
+    public static int selectImageResource(RemoteFile file) {
+        String mimetype = file.getMimeType();
+
+        if (mimetype.equals("DIR")) return R.drawable.folder;
+        if (mimetype.startsWith("text")) return R.drawable.file;
+        if (mimetype.endsWith("msword")) return R.drawable.file_doc;
+        if (mimetype.startsWith("image")) return R.drawable.file_image;
+        if (mimetype.startsWith("video")) return R.drawable.file_movie;
+        if (mimetype.endsWith("pdf")) return R.drawable.file_pdf;
+        if (mimetype.endsWith("mspowerpoint")) return R.drawable.file_ppt;
+        if (mimetype.endsWith("msexcel")) return R.drawable.file_xls;
+        if (mimetype.startsWith("sudio")) return R.drawable.file_sound;
+        if (mimetype.endsWith("zip")) return R.drawable.file_zip;
+
+        return R.drawable.file;
+    }
+
+
+    public GroupsArrayAdapter getGroupsAdapter() {
+        return groupsAdapter;
+    }
+
+    public FilesArrayAdapter getFilesAdapter() {
+        return filesAdapter;
+    }
+
+    public String getCurpath() {
+        return curpath;
+    }
 
     public void setCurPath(String curpath) {
         this.curpath = curpath;
     }
+
 }
