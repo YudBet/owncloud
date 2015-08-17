@@ -24,7 +24,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="400px"
+            android:layout_height="350px"
             android:background="#EEEEEE">
 
             <LinearLayout
@@ -42,8 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="50px"
+                    android:textSize="40px"
                     android:textColor="#000000" />
 
             </LinearLayout>
@@ -86,7 +85,7 @@
         </LinearLayout>
 
         <ListView
-            android:id="@+id/lvFile"
+            android:id="@+id/lvVersion"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:dividerHeight="2dp"

@@ -114,6 +114,7 @@ public class GroupActivity extends ActionBarActivity {
                 else {
                     Intent intent = new Intent(GroupActivity.this, FileActivity.class);
                     intent.putExtra("FILE_NAME", filename);
+                    intent.putExtra("FILE_POSITION", i);
                     startActivity(intent);
                 }
             }

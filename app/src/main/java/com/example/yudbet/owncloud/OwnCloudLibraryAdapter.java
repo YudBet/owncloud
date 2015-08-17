@@ -20,6 +20,7 @@ import com.owncloud.android.lib.resources.files.FileUtils;
 import com.owncloud.android.lib.resources.files.ReadRemoteFileOperation;
 import com.owncloud.android.lib.resources.files.ReadRemoteFolderOperation;
 import com.owncloud.android.lib.resources.files.RemoteFile;
+import com.owncloud.android.lib.resources.files.RemoveRemoteFileOperation;
 import com.owncloud.android.lib.resources.files.UploadRemoteFileOperation;
 
 import java.io.File;
@@ -41,6 +42,7 @@ public class OwnCloudLibraryAdapter implements OnRemoteOperationListener, OnData
 
     private OwnCloudClient client;
     private RemoteFile file;
+    private int fileresid;
 
     private Context context;
     private Handler handler;
@@ -94,14 +96,15 @@ public class OwnCloudLibraryAdapter implements OnRemoteOperationListener, OnData
         */
     }
 
-    public void readFile(String filename) {
-
+    public RemoteFile readFile(int fileposition) {
+        return file = filesAdapter.getItem(fileposition);
     }
 
 
     public void createGroup(String groupname) {
         // Create shared dir
-        CreateRemoteFolderOperation createOperation = new CreateRemoteFolderOperation(FileUtils.PATH_SEPARATOR + groupname, false);
+        CreateRemoteFolderOperation createOperation = new CreateRemoteFolderOperation(
+                FileUtils.PATH_SEPARATOR + groupname, false);
         createOperation.execute(client, this, handler);
     }
 
@@ -123,13 +126,13 @@ public class OwnCloudLibraryAdapter implements OnRemoteOperationListener, OnData
             Log.e(LOG_TAG, result.getLogMessage(), result.getException());
         }
         else if (operation instanceof ReadRemoteFolderOperation) {
-            onSuccessfulRefresh((ReadRemoteFolderOperation)operation, result);
+            onSuccessfulRefresh((ReadRemoteFolderOperation) operation, result);
         }
         else if (operation instanceof  UploadRemoteFileOperation) {
-            onSuccessfulUpload((UploadRemoteFileOperation)operation, result);
+            onSuccessfulUpload((UploadRemoteFileOperation) operation, result);
         }
         else if (operation instanceof  DownloadRemoteFileOperation) {
-            onSuccessfulDownload((DownloadRemoteFileOperation)operation, result);
+            onSuccessfulDownload((DownloadRemoteFileOperation) operation, result);
         }
         else {
             Toast.makeText(context, R.string.todo_operation_finished_in_success, Toast.LENGTH_SHORT).show();
@@ -167,6 +170,7 @@ public class OwnCloudLibraryAdapter implements OnRemoteOperationListener, OnData
 
 
     public static int selectImageResource(RemoteFile file) {
+        if (file == null) return R.drawable.file;
         String mimetype = file.getMimeType();
 
         if (mimetype.equals("DIR")) return R.drawable.folder;
@@ -190,6 +194,14 @@ public class OwnCloudLibraryAdapter implements OnRemoteOperationListener, OnData
 
     public FilesArrayAdapter getFilesAdapter() {
         return filesAdapter;
+    }
+
+    public RemoteFile getFile() {
+        return file;
+    }
+
+    public int getFileresid() {
+        return fileresid = selectImageResource(file);
     }
 
     public String getCurpath() {

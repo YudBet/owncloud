@@ -11,7 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.owncloud.android.lib.common.OwnCloudClient;
 import com.owncloud.android.lib.resources.files.RemoteFile;
@@ -23,9 +25,11 @@ public class FileActivity extends ActionBarActivity {
     private OwnCloudLibraryAdapter adapter;
 
     private String filename;
+    private int fileposition;
     private int fileresid;
 
     private Toolbar toolbar;
+    private ListView versionListView;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
 
@@ -34,18 +38,22 @@ public class FileActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file);
 
+
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            adapter = MainActivity.getOwnCloudAdapter();
-
             filename = extras.getString("FILE_NAME");
-            fileresid = OwnCloudLibraryAdapter.selectImageResource(file);
+            fileposition = extras.getInt("FILE_POSITION");
 
             adapter = MainActivity.getOwnCloudAdapter();
+            adapter.readFile(fileposition);
+
+            fileresid = adapter.getFileresid();
 
             initToolbar();
             initFileCheckerDrawer();
             initFileHeader();
+            initVersionListView();
             // initialize swipe view with old file record list & thread view
         }
     }
@@ -85,6 +93,20 @@ public class FileActivity extends ActionBarActivity {
         ivFile.setImageResource(fileresid);
         tvFile.setText(filename);
     }
+
+    public void initVersionListView() {
+        versionListView = (ListView)findViewById(R.id.lvVersion);
+
+        // item contains
+        //      file image(with fileresid),
+        //      update time(RemoteFIle.getModifiedTimesstamp()),
+        //      commit msg(from DB),
+        //      buttom(adapter.fileDownload(filename))
+
+        // set adapter
+        // set it's onitemclick listener
+    }
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
